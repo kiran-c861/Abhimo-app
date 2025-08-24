@@ -1,0 +1,12 @@
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Signature Background -->
+  <rect x="0" y="0" width="200" height="80" fill="transparent"/>
+  
+  <!-- Signature Lines (Stylized handwriting) -->
+  <path d="M20 40 Q30 30, 40 35 T60 40 Q70 45, 80 35 T100 40" stroke="#1a365d" stroke-width="2" fill="none"/>
+  <path d="M20 50 Q35 45, 50 50 T80 50 Q90 55, 100 45" stroke="#1a365d" stroke-width="2" fill="none"/>
+  <path d="M110 35 Q120 30, 130 35 T150 40 Q160 45, 170 35 T190 40" stroke="#1a365d" stroke-width="2" fill="none"/>
+  
+  <!-- Signature Text -->
+  <text x="100" y="65" font-family="cursive" font-size="12" fill="#1a365d" text-anchor="middle" font-style="italic">Naveen Nayak</text>
+</svg>

@@ -1,0 +1,13 @@
+This directory contains placeholder images for the Abhimo Technologies Appreciation Letter Generator.
+
+Required images:
+1. abhimo-logo.png - Company logo (recommended size: 200x200px)
+2. founder-signature.png - Founder's signature image
+3. company-seal.png - Official company seal
+
+You can replace these placeholder references with actual images by:
+1. Adding the actual image files to this directory
+2. Ensuring the filenames match those referenced in the code
+3. The application will automatically use these images when available
+
+For now, the application will work without these images, showing text alternatives instead.

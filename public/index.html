@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhimo Technologies - Appreciation Letter Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-section">
+                <img src="images/abhimo-logo.png" alt="Abhimo Technologies" class="logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTYwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIxNTYiIGhlaWdodD0iNzYiIHJ4PSI4IiBmaWxsPSIjMkU4NkFCIi8+PHRleHQgeD0iODAiIHk9IjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiPkFCSElNTzwvdGV4dD48L3N2Zz4='">
+                <div class="company-info">
+                    <h1>Abhimo Technologies Pvt Ltd</h1>
+                    <p>Appreciation Letter Generator</p>
+                    <div class="company-contact">
+                        <small>📍 Mangaluru, Karnataka | 📞 +91 7829738999 | ✉️ naveennayak.i@abhimo.com</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" onclick="showTab('generate')">
+                <i class="fas fa-plus-circle"></i> Generate Letter
+            </button>
+            <button class="tab-btn" onclick="showTab('view')">
+                <i class="fas fa-list"></i> View Letters
+            </button>
+            <button class="tab-btn" onclick="showTab('employees')">
+                <i class="fas fa-users"></i> Employees
+            </button>
+        </nav>
+
+        <!-- Generate Letter Tab -->
+        <div id="generate-tab" class="tab-content active">
+            <div class="form-section">
+                <h2><i class="fas fa-award"></i> Generate Appreciation Letter</h2>
+                <form id="letterForm" class="letter-form">
+                    <div class="form-group">
+                        <label for="employeeName">
+                            <i class="fas fa-user"></i> Employee Name *
+                        </label>
+                        <input type="text" id="employeeName" name="employeeName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">
+                            <i class="fas fa-building"></i> Department *
+                        </label>
+                        <select id="department" name="department" required onchange="toggleCustomDepartment()">
+                            <option value="">Select Department</option>
+                            <option value="Software Development">Software Development</option>
+                            <option value="Quality Assurance">Quality Assurance</option>
+                            <option value="DevOps">DevOps</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
+                            <option value="Project Management">Project Management</option>
+                            <option value="Human Resources">Human Resources</option>
+                            <option value="Sales & Marketing">Sales & Marketing</option>
+                            <option value="Finance & Accounting">Finance & Accounting</option>
+                            <option value="Operations">Operations</option>
+                            <option value="Research & Development">Research & Development</option>
+                            <option value="Other">Other (Specify)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="customDepartmentGroup" style="display: none;">
+                        <label for="customDepartment">
+                            <i class="fas fa-edit"></i> Specify Department *
+                        </label>
+                        <input type="text" id="customDepartment" name="customDepartment" placeholder="Enter department name...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i> Email Address *
+                        </label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">
+                            <i class="fas fa-tag"></i> Subject *
+                        </label>
+                        <input type="text" id="subject" name="subject" placeholder="e.g., Outstanding Performance in Q4 2024" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reason">
+                            <i class="fas fa-comment-alt"></i> Reason for Appreciation *
+                        </label>
+                        <textarea id="reason" name="reason" rows="4" 
+                                placeholder="Describe the specific achievements, contributions, or behaviors that warrant appreciation..." required></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-magic"></i> Generate Letter
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            <i class="fas fa-undo"></i> Reset Form
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Letter Preview Section -->
+            <div id="letterPreview" class="letter-preview" style="display: none;">
+                <div class="preview-header">
+                    <h3><i class="fas fa-eye"></i> Letter Preview</h3>
+                    <div class="preview-actions">
+                        <button onclick="editLetter()" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button onclick="downloadPDF()" class="btn btn-danger">
+                            <i class="fas fa-file-pdf"></i> Download PDF
+                        </button>
+                        <button onclick="downloadWord()" class="btn btn-success">
+                            <i class="fas fa-file-word"></i> Download Word
+                        </button>
+                    </div>
+                </div>
+                <div id="letterContent" class="letter-content"></div>
+            </div>
+        </div>
+
+        <!-- View Letters Tab -->
+        <div id="view-tab" class="tab-content">
+            <div class="letters-section">
+                <h2><i class="fas fa-list"></i> Generated Letters</h2>
+                <div class="search-section">
+                    <input type="text" id="searchLetters" placeholder="Search letters by employee name, department, or subject...">
+                    <button onclick="searchLetters()" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+                <div id="lettersContainer" class="letters-container">
+                    <!-- Letters will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Employees Tab -->
+        <div id="employees-tab" class="tab-content">
+            <div class="employees-section">
+                <h2><i class="fas fa-users"></i> Employee Management</h2>
+                <div class="add-employee-form">
+                    <h3>Add New Employee</h3>
+                    <form id="employeeForm" class="employee-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newEmployeeName">Name *</label>
+                                <input type="text" id="newEmployeeName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newEmployeeDept">Department *</label>
+                                <select id="newEmployeeDept" required onchange="toggleCustomEmployeeDepartment()">
+                                    <option value="">Select Department</option>
+                                    <option value="Software Development">Software Development</option>
+                                    <option value="Quality Assurance">Quality Assurance</option>
+                                    <option value="DevOps">DevOps</option>
+                                    <option value="UI/UX Design">UI/UX Design</option>
+                                    <option value="Project Management">Project Management</option>
+                                    <option value="Human Resources">Human Resources</option>
+                                    <option value="Sales & Marketing">Sales & Marketing</option>
+                                    <option value="Finance & Accounting">Finance & Accounting</option>
+                                    <option value="Operations">Operations</option>
+                                    <option value="Research & Development">Research & Development</option>
+                                    <option value="Other">Other (Specify)</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="customEmployeeDepartmentGroup" style="display: none;">
+                                <label for="customEmployeeDepartment">Specify Department *</label>
+                                <input type="text" id="customEmployeeDepartment" name="customEmployeeDepartment" placeholder="Enter department name...">
+                            </div>
+                            <div class="form-group">
+                                <label for="newEmployeeEmail">Email *</label>
+                                <input type="email" id="newEmployeeEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> Add Employee
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="employeesContainer" class="employees-container">
+                    <!-- Employees will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="messageContainer" class="message-container"></div>
+
+    <!-- View Letter Modal -->
+    <div id="viewModal" class="modal" style="display: none;">
+        <div class="modal-content view-modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-eye"></i> View Generated Letter</h3>
+                <span class="close" onclick="closeViewModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="viewModalContent" class="letter-content">
+                    <!-- Letter content will be loaded here -->
+                </div>
+                <div class="modal-actions">
+                    <button onclick="downloadPDF()" class="btn btn-danger">
+                        <i class="fas fa-file-pdf"></i> Download PDF
+                    </button>
+                    <button onclick="downloadWord()" class="btn btn-success">
+                        <i class="fas fa-file-word"></i> Download Word
+                    </button>
+                    <button onclick="closeViewModal()" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Letter Modal -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Edit Letter</h3>
+                <span class="close" onclick="closeEditModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editLetterForm">
+                    <div class="form-group">
+                        <label for="editSubject">Subject</label>
+                        <input type="text" id="editSubject" name="subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="editReason">Reason</label>
+                        <textarea id="editReason" name="reason" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editContent">Letter Content</label>
+                        <textarea id="editContent" name="content" rows="15"></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                        <button type="button" onclick="closeEditModal()" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

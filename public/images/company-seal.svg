@@ -1,0 +1,30 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Circle -->
+  <circle cx="50" cy="50" r="48" stroke="#1a365d" stroke-width="2" fill="none"/>
+  <circle cx="50" cy="50" r="42" stroke="#1a365d" stroke-width="1" fill="none"/>
+  
+  <!-- Company Name Arc (Top) -->
+  <path id="top-arc" d="M 15,50 A 35,35 0 0,1 85,50" fill="none" stroke="none"/>
+  <text font-family="Arial, sans-serif" font-size="8" fill="#1a365d" font-weight="bold">
+    <textPath href="#top-arc" startOffset="50%" text-anchor="middle">ABHIMO TECHNOLOGIES</textPath>
+  </text>
+  
+  <!-- Location Arc (Bottom) -->
+  <path id="bottom-arc" d="M 15,50 A 35,35 0 0,0 85,50" fill="none" stroke="none"/>
+  <text font-family="Arial, sans-serif" font-size="6" fill="#1a365d" font-weight="normal">
+    <textPath href="#bottom-arc" startOffset="50%" text-anchor="middle">MANGALURU • KARNATAKA</textPath>
+  </text>
+  
+  <!-- Center Logo/Initial -->
+  <circle cx="50" cy="50" r="15" fill="#1a365d"/>
+  <text x="50" y="57" font-family="Arial, sans-serif" font-size="16" fill="white" font-weight="bold" text-anchor="middle">A</text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="50" cy="20" r="2" fill="#1a365d"/>
+  <circle cx="50" cy="80" r="2" fill="#1a365d"/>
+  <circle cx="20" cy="50" r="2" fill="#1a365d"/>
+  <circle cx="80" cy="50" r="2" fill="#1a365d"/>
+  
+  <!-- Year -->
+  <text x="50" y="90" font-family="Arial, sans-serif" font-size="6" fill="#1a365d" text-anchor="middle">EST. 2020</text>
+</svg>

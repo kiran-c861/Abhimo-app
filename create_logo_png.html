@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convert SVG to PNG</title>
+</head>
+<body>
+    <canvas id="canvas" width="320" height="160" style="border: 1px solid #ccc;"></canvas>
+    
+    <script>
+        // Create the rectangular logo as PNG
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set high resolution
+        const scale = 2;
+        canvas.width = 320 * scale;
+        canvas.height = 160 * scale;
+        canvas.style.width = '320px';
+        canvas.style.height = '160px';
+        ctx.scale(scale, scale);
+        
+        // Create gradient background
+        const gradient = ctx.createLinearGradient(0, 0, 320, 160);
+        gradient.addColorStop(0, '#1e3a8a');
+        gradient.addColorStop(0.3, '#3b82f6');
+        gradient.addColorStop(0.7, '#1e40af');
+        gradient.addColorStop(1, '#1e3a8a');
+        
+        // Draw rounded rectangle background
+        ctx.fillStyle = gradient;
+        ctx.strokeStyle = '#1a365d';
+        ctx.lineWidth = 4;
+        
+        // Rounded rectangle
+        const x = 4, y = 4, width = 312, height = 152, radius = 16;
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        
+        // Draw letter "A"
+        ctx.fillStyle = 'white';
+        ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        // A shape
+        ctx.moveTo(40, 110);
+        ctx.lineTo(60, 50);
+        ctx.lineTo(90, 50);
+        ctx.lineTo(110, 110);
+        ctx.lineTo(96, 110);
+        ctx.lineTo(90, 90);
+        ctx.lineTo(60, 90);
+        ctx.lineTo(54, 110);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        
+        // A crossbar
+        ctx.fillRect(66, 70, 18, 8);
+        
+        // Company name
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 24px Arial';
+        ctx.letterSpacing = '1px';
+        ctx.fillText('ABHIMO', 140, 70);
+        
+        ctx.font = '600 16px Arial';
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.fillText('TECHNOLOGIES', 140, 96);
+        
+        // Tagline
+        ctx.font = '400 12px Arial';
+        ctx.fillStyle = 'rgba(255,255,255,0.7)';
+        ctx.fillText('Innovation • Excellence • Growth', 140, 120);
+        
+        // Tech elements
+        ctx.fillStyle = 'rgba(255,255,255,0.6)';
+        // Corner circles
+        ctx.beginPath();
+        ctx.arc(260, 40, 4, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        ctx.fillStyle = 'rgba(255,255,255,0.4)';
+        ctx.beginPath();
+        ctx.arc(280, 60, 3, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.arc(40, 40, 3, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        ctx.fillStyle = 'rgba(255,255,255,0.6)';
+        ctx.beginPath();
+        ctx.arc(60, 30, 4, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Connecting lines
+        ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(260, 40);
+        ctx.lineTo(280, 60);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(40, 40);
+        ctx.lineTo(60, 30);
+        ctx.stroke();
+        
+        // Download the image
+        setTimeout(() => {
+            const link = document.createElement('a');
+            link.download = 'abhimo-logo.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }, 1000);
+    </script>
+</body>
+</html>
